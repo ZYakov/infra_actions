@@ -1,3 +1,5 @@
+# flake8: noqa: I001, I005
+
 from django.contrib import admin
 from django.urls import path, include
 
