@@ -48,13 +48,13 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: <ваш_пароль_dockerhub>
+          password: Nokia213249
       - name: Push to Docker Hub
         # Пуш образа в Docker Hub
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ваш-логин-на-docker-hub/ваш-репозиторий-на-docker-hub:latest
+          tags: zyakov/infra_action:latest
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
