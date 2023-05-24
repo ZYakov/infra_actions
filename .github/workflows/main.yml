@@ -66,6 +66,9 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
         script: |
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+          ssh -i ${{ secrets.SSH_KEY }} ${{ secrets.USER }}@${{ secrets.HOST }} 'sudo apt-get update && sudo apt-get install -y docker.io'
+          export PATH="/usr/bin:$PATH"  # Добавить путь к исполняемому файлу Docker в переменную PATH
           sudo docker pull zyakov/infra_action
           sudo docker stop $(sudo docker ps -a -q)
           sudo docker run --rm -d -p 5000:5000 zyakov/infra_action
